@@ -6,6 +6,7 @@
 
 html,
 body {
+  min-height: 100%;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -72,3 +73,6 @@ nav {
   }
 }
 
+body > div {
+  min-height: 100%;
+}

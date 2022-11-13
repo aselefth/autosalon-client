@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import {
     useAddPurchaseMutation,
     useGetBodyTypesQuery,
-    useGetCarByVinQuery,
-    useGetCarsQuery,
     useGetClientsQuery,
     useGetColorsQuery,
     useGetEmployeeQuery,
@@ -12,9 +10,13 @@ import {
     useGetPurchaseByIdQuery,
     useGetTransmissionByIdQuery,
     useGetTransmissionsQuery,
-    useUpdateCarMutation,
     useUpdatePurchaseMutation,
 } from "../../../store/AppSlice";
+import {
+    useGetCarByVinQuery,
+    useGetCarsQuery,
+    useUpdateCarMutation
+} from '../../../store/CarSlice';
 import { setIsModalClose } from "../../../store/ModalSlice";
 
 const UpdatePurchase = () => {

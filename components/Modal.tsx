@@ -12,7 +12,7 @@ const Modal: NextPage<ModalProps> = ({children}) => {
     return (
         <div
             onClick={() => dispatch(setIsModalClose())}
-            style={{background: 'rgba(0, 0, 0, .4)'}}
+            style={{background: 'rgba(0, 0, 0, .4)', zIndex: '100'}}
             className="fixed z-100 left-0 right-0 top-0 bottom-0 flex flex-col justify-center items-center p-8"
         >
             <div

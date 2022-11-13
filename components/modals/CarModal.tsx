@@ -5,11 +5,13 @@ import {
     useGetBodyTypesQuery,
     useGetColorsQuery,
     useGetEnginesQuery,
-    useGetTransmissionsQuery,
+    useGetTransmissionsQuery
+} from "../../store/AppSlice";
+import {
     useAddCarMutation,
     useUpdateCarMutation,
     useGetCarByVinQuery
-} from "../../store/AppSlice";
+} from '../../store/CarSlice';
 import { setIsModalClose } from "../../store/ModalSlice";
 
 export const AddCarModal = () => {

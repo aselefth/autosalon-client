@@ -103,41 +103,6 @@ export const AppSlice = createApi({
             }),
             providesTags: [{type: 'App', id: 'Transmissions'}] 
         }),
-        getCars: builder.query({
-            query: () => ({
-                url: '/cars'
-            }),
-            providesTags: [{type: 'App', id: 'Cars'}]
-        }),
-        getCarByVin: builder.query({
-            query: (vin: string) => ({
-                url: `/cars/${vin}`
-            }),
-            providesTags: [{type: 'App', id: 'Cars'}]
-        }),
-        addCar: builder.mutation({
-            query: (body) => ({
-                url: '/cars',
-                method: 'POST',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Cars'}]
-        }),
-        updateCar: builder.mutation<string, {vin: string,carName: string, engineId: number, transmissionId: number, colorId: number, bodyTypeId: number, img: string}>({
-            query: (body) => ({
-                url: `/cars/${body.vin}`,
-                method: 'PATCH',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Cars'}]
-        }),
-        deleteCar: builder.mutation({
-            query: (vin: string) => ({
-                url: `/cars/${vin}`,
-                method: 'DELETE'
-            }),
-            invalidatesTags: [{type: 'App', id: 'Cars'}]
-        }),
         getDepartments: builder.query({
             query: () => ({
                 url: '/departments'
@@ -274,11 +239,6 @@ export const {
     useGetBodyTypeByIdQuery,
     useGetTransmissionsQuery,
     useGetTransmissionByIdQuery,
-    useGetCarsQuery,
-    useGetCarByVinQuery,
-    useAddCarMutation,
-    useUpdateCarMutation,
-    useDeleteCarMutation,
     useGetDepartmentsQuery,
     useGetEquipmentTypesQuery,
     useGetEquipmentQuery,
