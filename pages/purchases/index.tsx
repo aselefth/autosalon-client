@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useAppDispatch } from "../../hooks/redux";
-import { useDeletePurchaseMutation, useGetPurchasesQuery } from "../../store/AppSlice";
-import { setIsModalAdd, setIsModalUpdate } from "../../store/ModalSlice";
+import { useDeletePurchaseMutation, useGetPurchasesQuery } from "../../store/PurchaseSlice";
 
 const Purchases = () => {
     const dispatch = useAppDispatch();

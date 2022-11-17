@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/redux";
-import { useAddClientMutation, useGetClientByIdQuery, useUpdateClientMutation } from "../../store/AppSlice";
+import { useAddClientMutation, useGetClientByIdQuery, useUpdateClientMutation } from "../../store/ClientSlice";
 import { setIsModalClose } from "../../store/ModalSlice";
 
 export const AddClientModal = () => {

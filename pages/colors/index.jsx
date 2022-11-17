@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Modal from "../../components/Modal";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { useGetColorsQuery, useDeleteColorMutation } from "../../store/AppSlice";
-import { setIsModalAdd, setIsModalClose, setIsModalUpdate } from "../../store/ModalSlice";
+import { useGetColorsQuery, useDeleteColorMutation } from "../../store/ColorSlice";
+import { setIsModalAdd, setIsModalUpdate } from "../../store/ModalSlice";
 import { AddColorsModal, UpdateColorsModal } from "../../components/modals/ColorModals";
 
 export default function Colors () {
@@ -66,13 +66,3 @@ export default function Colors () {
         </div>
     )
 }
-
-// export const getServerSideProps = async () => {
-//     const colorsJson = await fetch('http://localhost:3001/colors');
-//     const colors = await colorsJson.json();
-//     return {
-//         props: {
-//             colors
-//         }
-//     }
-// }

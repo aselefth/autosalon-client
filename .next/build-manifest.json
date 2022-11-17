@@ -25,10 +25,25 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/cars": [
+    "/cars/car/[vin]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/cars.js"
+      "static/chunks/pages/cars/car/[vin].js"
+    ],
+    "/purchases": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/purchases.js"
+    ],
+    "/purchases/[purchaseId]/[vin]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/purchases/[purchaseId]/[vin].js"
+    ],
+    "/purchases/buy/[vin]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/purchases/buy/[vin].js"
     ]
   },
   "ampFirstPages": []

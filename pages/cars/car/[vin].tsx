@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../hooks/redux";
 import {
     useGetCarByVinQuery,
-    useUpdateCarMutation,
 } from "../../../store/CarSlice";
 import {
     useGetBodyTypesQuery,
-    useGetColorsQuery,
     useGetEnginesQuery,
     useGetTransmissionsQuery,
 } from '../../../store/AppSlice';
-import { setIsModalClose } from "../../../store/ModalSlice";
+import {
+    useGetColorsQuery
+} from '../../../store/ColorSlice';
 
 const Car = () => {
     const router = useRouter();

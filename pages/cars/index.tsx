@@ -20,7 +20,6 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
     const [transmissionFilter, setTransmissionFilter] = useState("");
     const [search, setSearch] = useState("");
     const debounce = useDebounce(search, 700);
-    const [page, setPage] = useState(0);
     const router = useRouter();
     const dispatch = useAppDispatch();
     const isModal = useAppSelector((state) => state.modalSlice.isModal);
@@ -34,7 +33,7 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
         handlePrevPage,
         itemsPerPage,
         setCurrPage,
-    } = usePagination({ currentPage: page, totalItems, itemsPerPage: 3 });
+    } = usePagination({ currentPage: 0, totalItems, itemsPerPage: 3 });
     const [vin, setVin] = useState("");
     const { data: searchResult } = useGetCarsByNameQuery(
         { name: `${debounce}` },

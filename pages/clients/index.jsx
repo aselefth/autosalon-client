@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { useDeleteClientMutation, useGetClientsQuery } from "../../store/AppSlice";
+import { useDeleteClientMutation, useGetClientsQuery } from "../../store/ClientSlice";
 import Modal from "../../components/Modal";
 import { AddClientModal, UpdateClientModal } from "../../components/modals/ClientModal";
 import { setIsModalAdd, setIsModalUpdate } from "../../store/ModalSlice";

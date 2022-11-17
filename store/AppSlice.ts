@@ -5,79 +5,11 @@ export const AppSlice = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3001/'}),
     tagTypes: ['App'],
     endpoints: (builder) => ({
-        getColors: builder.query({
-            query: () => ({
-                url: 'colors',
-            }),
-            providesTags: [{type: 'App', id: 'Col'}]
-        }),
-        getColorById: builder.query({
-            query: (colorId: number) => ({
-                url: `colors/${colorId}`,
-            })
-        }),
-        addColor: builder.mutation({
-            query: (body) => ({
-                url: 'colors',
-                method: 'POST',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Col'}]
-        }),
-        deleteColor: builder.mutation({
-            query: (id: number) => ({
-                url: `colors/${id}`,
-                method: 'DELETE'
-            }),
-            invalidatesTags: [{type: 'App', id: 'Col'}]
-        }),
-        updateColor: builder.mutation({
-            query: (body) => ({
-                url: `colors/${body.colorId}`,
-                method: 'PATCH',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Col'}]
-        }),
         getEngines: builder.query({
             query: () => ({
                 url: '/engines'
             }),
             providesTags: [{type: 'App', id: 'Eng'}]
-        }),
-        getClients: builder.query({
-            query: () => ({
-                url: '/clients'
-            }),
-            providesTags: [{type: 'App', id: 'Clients'}]
-        }),
-        addClient: builder.mutation({
-            query: (body) => ({
-                url: `clients`,
-                method: 'POST',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Clients'}]
-        }),
-        getClientById: builder.query({
-            query: (clientId: number) => ({
-                url: `clients/${clientId}`,
-            })
-        }),
-        deleteClient: builder.mutation({
-            query: (clientId: number) => ({
-                url: `clients/${clientId}`,
-                method: 'DELETE'
-            }),
-            invalidatesTags: [{type: 'App', id: 'Clients'}]
-        }),
-        updateClient: builder.mutation({
-            query: (body) => ({
-                url: `clients/${body.clientId}`,
-                method: 'PATCH',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Clients'}]
         }),
         getBodyTypes: builder.query({
             query: () => ({
@@ -185,56 +117,11 @@ export const AppSlice = createApi({
             }),
             invalidatesTags: [{type: 'App', id: 'Empl'}]
         }),
-        getPurchases: builder.query({
-            query: () => ({
-                url: '/purchases'
-            }),
-            providesTags: [{type: 'App', id: 'Purch'}]
-        }),
-        getPurchaseById: builder.query({
-            query: (purchaseId: number) => ({
-                url: `/purchases/${purchaseId}`
-            }),
-            providesTags: [{type: 'App', id: 'Purch'}]
-        }),
-        addPurchase: builder.mutation({
-            query: (body) => ({
-                url: '/purchases',
-                method: 'POST',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Purch'}]
-        }),
-        updatePurchase: builder.mutation({
-            query: (body) => ({
-                url: `/purchases/${body.purchaseId}`,
-                method: 'PATCH',
-                body
-            }),
-            invalidatesTags: [{type: 'App', id: 'Purch'}]
-        }),
-        deletePurchase: builder.mutation({
-            query: (purchaseId: number) => ({
-                url: `/purchases/${purchaseId}`,
-                method: 'DELETE'
-            }),
-            invalidatesTags: [{type: 'App', id: 'Purch'}]
-        })
     })
 })
 
 export const {
-    useGetColorsQuery, 
-    useAddColorMutation, 
-    useDeleteColorMutation, 
-    useUpdateColorMutation, 
-    useGetColorByIdQuery,
     useGetEnginesQuery,
-    useGetClientsQuery,
-    useGetClientByIdQuery,
-    useAddClientMutation,
-    useDeleteClientMutation,
-    useUpdateClientMutation,
     useGetBodyTypesQuery,
     useGetBodyTypeByIdQuery,
     useGetTransmissionsQuery,
@@ -251,9 +138,4 @@ export const {
     useAddEmployeeMutation,
     useDeleteEmployeeMutation,
     useUpdateEmployeeMutation,
-    useGetPurchasesQuery,
-    useGetPurchaseByIdQuery,
-    useAddPurchaseMutation,
-    useDeletePurchaseMutation,
-    useUpdatePurchaseMutation
 } = AppSlice;

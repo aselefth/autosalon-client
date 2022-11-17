@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import {
     useGetBodyTypesQuery,
-    useGetColorsQuery,
     useGetEnginesQuery,
     useGetTransmissionsQuery
 } from "../../store/AppSlice";
+import {
+    useGetColorsQuery
+} from '../../store/ColorSlice';
 import {
     useAddCarMutation,
     useUpdateCarMutation,
