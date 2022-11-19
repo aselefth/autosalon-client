@@ -44,12 +44,13 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
     
 
     useEffect(() => {
+        
         setTotalItems(
             cars?.filter(
                 (car: ICarFull) =>
                     car.engineName.includes(engineFilter) &&
                     car.bodyType.includes(bodyTypeFilter) &&
-                    car.transmissionType.includes(transmissionFilter)
+                    new RegExp(`^${transmissionFilter}`).test(car.transmissionType)
             ).length
         );
 

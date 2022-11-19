@@ -1,9 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/cars/car/[vin]": "pages/cars/car/[vin].js",
-  "/purchases": "pages/purchases.js",
-  "/purchases/buy/[vin]": "pages/purchases/buy/[vin].js",
-  "/purchases/[purchaseId]/[vin]": "pages/purchases/[purchaseId]/[vin].js"
+  "/_document": "pages/_document.js",
+  "/cars": "pages/cars.js"
 }
