@@ -5,8 +5,13 @@ import { useGetColorsQuery, useDeleteColorMutation } from "../../store/ColorSlic
 import { setIsModalAdd, setIsModalUpdate } from "../../store/ModalSlice";
 import { AddColorsModal, UpdateColorsModal } from "../../components/modals/ColorModals";
 
+export interface IColor {
+    colorId: number;
+    colorHex: string;
+}
+
 export default function Colors () {
-    const {data: colorsRtk} = useGetColorsQuery();
+    const {data: colorsRtk} = useGetColorsQuery(undefined);
     const [deleteColor] = useDeleteColorMutation();
     const [colorId, setColorId] = useState(0);
     const isModal = useAppSelector(state => state.modalSlice.isModal);
@@ -14,7 +19,7 @@ export default function Colors () {
     const isUpdate = useAppSelector(state => state.modalSlice.isUpdate);
     const dispatch = useAppDispatch();
 
-    const handleDeleteColor = async(id) => {
+    const handleDeleteColor = async(id: number) => {
         await deleteColor(id);
     }
 
@@ -26,7 +31,7 @@ export default function Colors () {
                 {isAdd && <AddColorsModal />}
                 {isUpdate && <UpdateColorsModal colorId={colorId}/>}
             </Modal>}
-            {colorsRtk && colorsRtk.map(color => (
+            {colorsRtk && colorsRtk.map((color: IColor) => (
                 <div
                     className='flex flex-col p-4 gap-2 rounded-xl shadow-md w-[200px] h-[120px] bg-red-100 hover:scale-105 transition-transform font-light italic'
                     key={color.colorId}
