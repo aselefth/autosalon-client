@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/redux";
-import { useAddColorMutation, useGetColorByIdQuery, useUpdateColorMutation } from "../../store/AppSlice";
+import { useAddColorMutation, useGetColorByIdQuery, useUpdateColorMutation } from "../../store/ColorSlice";
 import { setIsModalClose } from "../../store/ModalSlice";
 
 export const AddColorsModal = () => {

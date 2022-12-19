@@ -12,6 +12,7 @@ import {
 import {
     useGetColorsQuery
 } from '../../../store/ColorSlice';
+import { useGetCurrentUserQuery } from "../../../store/AuthSlice";
 
 const Car = () => {
     const router = useRouter();
@@ -24,7 +25,9 @@ const Car = () => {
     const { data: transmissions } = useGetTransmissionsQuery(undefined);
     const { data: bodyTypes } = useGetBodyTypesQuery(undefined);
     const [colorId, setColorId] = useState(1);
-
+    const {data: currentUser} = useGetCurrentUserQuery(undefined);
+    console.log(currentUser);
+    
 
     useEffect(() => {
         car && setColorId(car.colorId);
@@ -59,7 +62,9 @@ const Car = () => {
                 className="flex flex-col gap-4 font-light italic"
                 onSubmit={(e) => {
                     e.preventDefault();
-                    router.push(`/purchases/buy/${String(vin)}`)
+                    currentUser === null 
+                    ? router.push('/login')
+                    : router.push(`/purchases/buy/${String(vin)}`)
                 }}
             >
                 <h1>цвет</h1>

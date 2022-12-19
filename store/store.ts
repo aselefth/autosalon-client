@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { AppSlice } from "./AppSlice";
+import { AuthSlice } from "./AuthSlice";
 import { CarSlice } from "./CarSlice";
 import { ClientSlice } from "./ClientSlice";
 import { ColorsSlice } from "./ColorSlice";
@@ -13,6 +14,7 @@ const store = configureStore({
         [ClientSlice.reducerPath]: ClientSlice.reducer,
         [ColorsSlice.reducerPath]: ColorsSlice.reducer,
         [PurchaseSlice.reducerPath]: PurchaseSlice.reducer,
+        [AuthSlice.reducerPath]: AuthSlice.reducer,
         modalSlice,
     },
     middleware: (getDefaultMiddleware) =>
@@ -21,7 +23,8 @@ const store = configureStore({
             CarSlice.middleware,
             ClientSlice.middleware,
             ColorsSlice.middleware,
-            PurchaseSlice.middleware
+            PurchaseSlice.middleware,
+            AuthSlice.middleware
         ),
 });
 

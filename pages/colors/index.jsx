@@ -22,9 +22,9 @@ export default function Colors () {
     return (
     <div className='wrapper flex flex-wrap mx-auto relative'>
             {isModal &&
-            <Modal> 
+            <Modal>
                 {isAdd && <AddColorsModal />}
-                {isUpdate && <UpdateColorsModal colorId={colorId}/>} 
+                {isUpdate && <UpdateColorsModal colorId={colorId}/>}
             </Modal>}
             {colorsRtk && colorsRtk.map(color => (
                 <div
@@ -38,13 +38,13 @@ export default function Colors () {
                     </h1>
                     <h1>#{color.colorHex}</h1>
                     <div className="flex gap-2">
-                        <h1 
+                        <h1
                             onClick={() => handleDeleteColor(color.colorId)}
                             className='px-4 py-2 bg-gray-100 flex rounded cursor-pointer'
                         >
                             delete
                         </h1>
-                        <h1 
+                        <h1
                             onClick={() => {
                                 setColorId(color.colorId)
                                 dispatch(setIsModalUpdate())

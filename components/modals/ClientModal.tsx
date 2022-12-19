@@ -4,6 +4,10 @@ import { useAppDispatch } from "../../hooks/redux";
 import { useAddClientMutation, useGetClientByIdQuery, useUpdateClientMutation } from "../../store/ClientSlice";
 import { setIsModalClose } from "../../store/ModalSlice";
 
+export interface IClient {
+    name: string, age: number, passport: string
+}
+
 export const AddClientModal = () => {
     const [name, setName] = useState('');
     const [age, setAge] = useState(0);
@@ -11,7 +15,7 @@ export const AddClientModal = () => {
     const [addClient] = useAddClientMutation();
     const dispatch = useAppDispatch();
 
-    const handleAddClient = async(client: {name: string, age: number, passport: string}) => {
+    const handleAddClient = async(client: IClient) => {
         await addClient(client);
     }
 

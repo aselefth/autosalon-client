@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-    useGetCarsQuery,
-    useGetCarsByNameQuery,
-} from "../../store/CarSlice";
+import { useGetCarsQuery, useGetCarsByNameQuery } from "../../store/CarSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import Modal from "../../components/Modal";
 import { AddCarModal, UpdateCarModal } from "../../components/modals/CarModal";
@@ -13,8 +10,12 @@ import { usePagination } from "../../hooks/usePagination";
 import { ICarFull } from "../../types/Car";
 import CarCard from "../../components/CarCard";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { useGetCurrentUserQuery } from "../../store/AuthSlice";
 
-export default function Cars({cars}: InferGetServerSidePropsType<typeof getServerSideProps>) {    
+export default function Cars({
+    cars,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const { data: user } = useGetCurrentUserQuery(undefined);
     const [engineFilter, setEngineFilter] = useState("");
     const [bodyTypeFilter, setBodyTypeFilter] = useState("");
     const [transmissionFilter, setTransmissionFilter] = useState("");
@@ -25,7 +26,6 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
     const isModal = useAppSelector((state) => state.modalSlice.isModal);
     const isAdd = useAppSelector((state) => state.modalSlice.isAdd);
     const isUpdate = useAppSelector((state) => state.modalSlice.isUpdate);
-    // const { data: cars } = useGetCarsQuery(page);
     const [totalItems, setTotalItems] = useState(0);
     const {
         currPage,
@@ -41,30 +41,39 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
             skip: debounce.length < 3,
         }
     );
-    
 
     useEffect(() => {
-        
         setTotalItems(
             cars?.filter(
                 (car: ICarFull) =>
                     car.engineName.includes(engineFilter) &&
                     car.bodyType.includes(bodyTypeFilter) &&
-                    new RegExp(`^${transmissionFilter}`).test(car.transmissionType)
+                    new RegExp(`^${transmissionFilter}`).test(
+                        car.transmissionType
+                    )
             ).length
         );
-
+        console.log(
+            cars?.filter(
+                (car: ICarFull) =>
+                    car.engineName.includes(engineFilter) &&
+                    car.bodyType.includes(bodyTypeFilter) &&
+                    new RegExp(`^${transmissionFilter}`).test(
+                        car.transmissionType
+                    )
+            ).length
+        );
     }, [engineFilter, bodyTypeFilter, transmissionFilter, cars]);
 
     return (
         cars && (
             <div className="flex flex-col justify-between h-full relative">
                 {isModal && (
-                            <Modal>
-                                {isAdd && <AddCarModal />}
-                                {isUpdate && <UpdateCarModal vin={vin} />}
-                            </Modal>
-                        )}
+                    <Modal>
+                        {isAdd && <AddCarModal />}
+                        {isUpdate && <UpdateCarModal vin={vin} />}
+                    </Modal>
+                )}
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
@@ -101,30 +110,36 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
                 </form>
                 <div className="flex justify-between">
                     <div className="wrapper flex flex-wrap relative">
-                        
-
                         {cars
                             ?.filter(
                                 (car: ICarFull) =>
                                     car.engineName.includes(engineFilter) &&
-                                    car.bodyType.includes(bodyTypeFilter) && 
-                                    car.transmissionType.includes(transmissionFilter)
+                                    car.bodyType.includes(bodyTypeFilter) &&
+                                    car.transmissionType.includes(
+                                        transmissionFilter
+                                    )
                             )
                             .map(
                                 (car: ICarFull, i: number) =>
                                     i < (currPage + 1) * itemsPerPage &&
                                     i >= (currPage + 0) * itemsPerPage && (
-                                        <CarCard car={car} key={car.vin} setVin={setVin}/>
+                                        <CarCard
+                                            car={car}
+                                            key={car.vin}
+                                            setVin={setVin}
+                                        />
                                     )
                             )}
-                        <div
-                            onClick={() => {
-                                dispatch(setIsModalAdd());
-                            }}
-                            className="flex text-5xl flex-col items-center justify-center p-4 gap-2 rounded-xl shadow-md w-[250px] h-[220px] bg-red-100 hover:shadow-2xl transition-shadow"
-                        >
-                            +
-                        </div>
+                        {user?.access === "admin" && (
+                            <div
+                                onClick={() => {
+                                    dispatch(setIsModalAdd());
+                                }}
+                                className="flex text-5xl flex-col items-center justify-center p-4 gap-2 rounded-xl shadow-md w-[250px] h-[220px] bg-red-100 hover:shadow-2xl transition-shadow"
+                            >
+                                +
+                            </div>
+                        )}
                     </div>
                     <div className="flex flex-col mr-4 gap-2 italic font-light">
                         <h1 className="text-xl">фильтры:</h1>
@@ -374,10 +389,7 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
                     </span>
                     <p>{currPage + 1}</p>
                     <span
-                        onClick={() => 
-                            handleNextPage()
-                            
-                        }
+                        onClick={() => handleNextPage()}
                         className="bg-yellow-200 px-4 rounded cursor-pointer"
                     >
                         {">"}
@@ -388,14 +400,14 @@ export default function Cars({cars}: InferGetServerSidePropsType<typeof getServe
     );
 }
 
-
-export const getServerSideProps: GetServerSideProps<{cars: ICarFull[]}> = async() => {
-    const res = await fetch('http://localhost:3001/cars');
+export const getServerSideProps: GetServerSideProps<{
+    cars: ICarFull[];
+}> = async () => {
+    const res = await fetch("http://localhost:3001/cars");
     const cars = await res.json();
     return {
         props: {
-            cars
-        }
-    }
-} 
-
+            cars,
+        },
+    };
+};
